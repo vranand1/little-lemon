@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function OnboardingScreen({ navigation }) {
@@ -14,7 +14,7 @@ function OnboardingScreen({ navigation }) {
         // Indicate that onboarding is completed
         await AsyncStorage.setItem('onboardingCompleted', JSON.stringify(true));
         // Navigate to profile screen
-        navigation.navigate('ProfileScreen', { data: { firstName, email } });
+        navigation.navigate('Profile', { data: { firstName, email } });
     } else {
       alert('Please fill in all fields!');
     }
@@ -22,7 +22,8 @@ function OnboardingScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Little Lemon</Text>
+      <Image source={require('../assets/Logo.png')} resizeMode="contain" style={styles.logo} />
+      <Text style={styles.title}>Let us get to know you</Text>
       <TextInput
         style={styles.input}
         placeholder="First Name"
@@ -35,7 +36,7 @@ function OnboardingScreen({ navigation }) {
         value={email}
         onChangeText={setEmail}
       />
-      <Button title="Complete Onboarding" onPress={handleCompleteOnboarding} />
+      <Button title="Next" onPress={handleCompleteOnboarding} />
     </View>
   );
 }
@@ -47,9 +48,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: 'center',
+    fontSize: 30,
+    fontFamily: 'MarkaziText_400Medium',
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  logo: {
+    width: 200,
+    height: 50,
+    alignItems: 'center',
   },
   input: {
     padding: 10,

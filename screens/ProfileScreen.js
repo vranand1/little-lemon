@@ -60,7 +60,7 @@ export default function ProfileScreen({ route, navigation }) {
 
   const logout = async () => {
     await AsyncStorage.clear();
-    navigation.navigate('OnboardingScreen');
+    navigation.navigate('Onboarding');
   };
 
   return (
@@ -87,7 +87,7 @@ export default function ProfileScreen({ route, navigation }) {
 
       {/* Switch */}
       <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20 }}>
-        <Text style={{ marginRight: 10 }}>Email Notification:</Text>
+        <Text style={{ marginRight: 10 }}>Email :</Text>
         <Switch
             value={checkboxes.someKey}
             onValueChange={(newValue) => setCheckboxes(prev => ({ ...prev, someKey: newValue }))}
